@@ -1,0 +1,12 @@
+service: "api.service:svc"
+include:
+  - "api/*.py"
+python:
+  packages:
+    - scikit-learn>=1.2.0
+    - pandas>=1.5.0
+    - numpy>=1.23.0
+    - pydantic>=2.0.0
+    - bentoml
+models:
+  - seattle_energy_model:latest

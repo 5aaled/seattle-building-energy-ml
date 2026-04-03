@@ -1,0 +1,13 @@
+# Seattle Building Energy - ML Project
+# Use one virtual environment for the entire project
+
+pandas>=1.5.0
+numpy>=1.23.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+scikit-learn>=1.2.0
+bentoml>=1.4.0
+pydantic>=2.0.0
+requests>=2.28.0
+
+joblib~=1.5.3

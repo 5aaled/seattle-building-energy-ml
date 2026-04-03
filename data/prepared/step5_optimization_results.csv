@@ -1,0 +1,2 @@
+best_params,best_cv_r2,test_r2,test_mae,test_rmse
+"{'model__max_depth': 5, 'model__min_samples_leaf': 20, 'model__min_samples_split': 2}",0.22632096017870112,0.03230812884587042,36.79158452375035,53.83578945984207

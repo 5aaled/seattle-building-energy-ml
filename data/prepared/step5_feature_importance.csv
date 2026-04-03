@@ -1,0 +1,42 @@
+feature,importance
+CouncilDistrictCode,0.0
+BuildingType_Nonresidential WA,0.0
+BuildingType_SPS-District K-12,0.0
+NeighborhoodGrouped_CENTRAL,0.0
+NeighborhoodGrouped_DELRIDGE,0.0
+NeighborhoodGrouped_DOWNTOWN,0.0
+NeighborhoodGrouped_EAST,0.0
+NeighborhoodGrouped_GREATER DUWAMISH,0.0
+PrimaryPropertyTypeGrouped_Other,0.0
+NeighborhoodGrouped_LAKE UNION,0.0
+NeighborhoodGrouped_NORTH,0.0
+NeighborhoodGrouped_NORTHEAST,0.0
+NeighborhoodGrouped_NORTHWEST,0.0
+NeighborhoodGrouped_Other,0.0
+NeighborhoodGrouped_SOUTHEAST,0.0
+NeighborhoodGrouped_SOUTHWEST,0.0
+PrimaryPropertyTypeGrouped_Institutional,0.0
+NeighborhoodGrouped_MAGNOLIA / QUEEN ANNE,0.0
+BuildingType_NonResidential,0.0
+BuildingType_Nonresidential COS,0.0
+PrimaryPropertyTypeGrouped_Retail,0.0
+HasSteam,0.0
+HasNaturalGas,0.0
+HasElectricity,0.0
+LargestUseProportion,0.0
+UseTypeCount,0.0
+HasMultipleUses,0.0
+Latitude,0.0
+ParkingRatio,0.0
+HasENERGYSTARScore,0.0
+NumberofBuildings,0.0
+Longitude,0.001992358903426192
+EnergySourceCount,0.005938281215717366
+BuildingAge,0.011160787451869845
+PrimaryPropertyTypeGrouped_Office,0.015847065185315513
+LargestPropertyUseTypeGFA,0.017721342708098102
+LogPropertyGFATotal,0.026233962266633312
+NumberofFloors,0.02695032933526218
+AreaPerFloor,0.19590423476828087
+PrimaryPropertyTypeGrouped_Industrial,0.23616593402959435
+ENERGYSTARScore,0.46208570413580236
