@@ -25,29 +25,9 @@ liverable/
 ├── bentofile.yaml         # BentoML build config
 ├── scripts/
 │   └── test_predict.py    # Test API
-├── template_modelistation_supervisee.ipynb
 ├── requirements.txt
 └── README.md
 ```
-
-## Setup (One Interpreter for Entire Project)
-
-1. Create a virtual environment in the project root:
-   ```bash
-   cd liverable
-   python -m venv .venv
-   ```
-
-2. Activate it:
-   - macOS/Linux: `source .venv/bin/activate`
-   - Windows: `.venv\Scripts\activate`
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. In VS Code/Cursor: select the `.venv` interpreter (Ctrl+Shift+P → "Python: Select Interpreter" → choose `.venv`)
 
 ## Run Steps
 
@@ -97,24 +77,3 @@ liverable/
     └── test_predict.py # Test API with requests
 ```
 
-**Setup:**
-```bash
-# 1. Save the model (run after Step 5)
-python save_model.py
-
-# 2. Serve the API
-bentoml serve api.service:svc
-
-# 3. Test (in another terminal)
-python scripts/test_predict.py
-# Or curl (body must use the "data" key — same name as predict(self, data: BuildingInput)):
-# curl -X POST http://localhost:3000/predict -H "Content-Type: application/json" -d '{"data":{"year_built":1990,"property_gfa_total":50000,"number_of_floors":5,"primary_property_type":"Office","neighborhood":"DOWNTOWN","energystar_score":65}}'
-```
-
-**Swagger UI:** http://localhost:3000 (when serving)
-
-**Note:** If you see a `pyparsing` ImportError, try: `pip install --upgrade pyparsing`
-
-## Old Folders (can be removed)
-
-The previous `projet/` and `feature_engineering/` folders are no longer used. You can delete them to avoid confusion. All code and data now live in `src/` and `data/`.
