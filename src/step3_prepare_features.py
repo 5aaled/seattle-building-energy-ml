@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.compose import ColumnTransformer
+from sklearn.compose import ColumnTransformer     # It lets you apply different transformations to different columns.
 from sklearn.preprocessing import OneHotEncoder
 
 
@@ -41,7 +41,7 @@ df = df.drop(columns=cols_dropped)
 print(f"  Dropped {len(cols_dropped)} columns. Remaining: {len(df.columns)}")
 
 
-print("\n--- Target distribution and outlier handling ---")
+print("\n Target distribution and outlier handling ")
 
 # Plot target distribution
 os.makedirs(FIGURES_DIR, exist_ok=True)
@@ -77,7 +77,7 @@ print("  Saved: step3_target_distribution_after.png")
 
 
 
-print("\n--- Correlation matrix (redundant features) ---")
+print("\n Correlation matrix (redundant features)  ")
 
 numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
 if TARGET_COLUMN in numeric_cols:

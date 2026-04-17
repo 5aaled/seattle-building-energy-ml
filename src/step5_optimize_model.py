@@ -1,3 +1,5 @@
+
+#GridSearch is a method that tries different combinations of model settings (hyperparameters), evaluates each one using cross-validation, and automatically selects the best-performing combination.
 import os
 import pandas as pd
 import numpy as np
@@ -10,9 +12,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeRegressor
 
-# =============================================================================
-# CONFIGURATION
-# =============================================================================
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 X_PATH = os.path.join(PROJECT_ROOT, "data", "prepared", "X_prepared.csv")
 Y_PATH = os.path.join(PROJECT_ROOT, "data", "prepared", "y.csv")
@@ -26,11 +26,6 @@ CV = 5
 
 X = pd.read_csv(X_PATH)
 y = pd.read_csv(Y_PATH).squeeze()
-
-print(f"X shape: {X.shape}")
-print(f"y shape: {y.shape}")
-
-print("\n--- Train-Test Split ---")
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
@@ -61,9 +56,6 @@ grid_search.fit(X_train, y_train)
 print(f"\nBest parameters: {grid_search.best_params_}")
 print(f"Best CV R2: {grid_search.best_score_:.4f}")
 
-# =============================================================================
-# 4. EVALUATE BEST MODEL
-# =============================================================================
 print("\n--- Best Model Performance ---")
 
 best_pipeline = grid_search.best_estimator_
@@ -77,13 +69,12 @@ print(f"Test MAE:  {mean_absolute_error(y_test, y_test_pred):.2f}")
 print(f"Train RMSE: {np.sqrt(mean_squared_error(y_train, y_train_pred)):.2f}")
 print(f"Test RMSE: {np.sqrt(mean_squared_error(y_test, y_test_pred)):.2f}")
 
-# =============================================================================
-# 5. FEATURE IMPORTANCE
-# =============================================================================
+
+
 print("\n--- Feature Importance ---")
 
 # Extract the fitted DecisionTree from the pipeline
-dt_model = best_pipeline.named_steps["model"]
+dt_model = best_pipeline.named_steps["model"]    # grab ONLY the decision tree part
 feature_importances = dt_model.feature_importances_
 feature_names = X.columns.tolist()
 

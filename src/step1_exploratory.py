@@ -29,9 +29,7 @@ after_residential_filter = len(df)
 print(f"\nAfter filtering to NON-RESIDENTIAL only: {after_residential_filter} rows")
 print(f"  (Excluded: {initial_count - after_residential_filter} residential buildings)")
 
-# =============================================================================
-# 3. DATA QUALITY: IDENTIFY ABERRANT / IRRELEVANT BUILDINGS
-# =============================================================================
+
 print("\n" + "=" * 60)
 print("DATA QUALITY: IDENTIFYING ABERRANT BUILDINGS")
 print("=" * 60)
@@ -67,6 +65,13 @@ for col, desc in target_candidates.items():
     valid = df[df[col].notna() & (df[col] > 0)]
     skew = valid[col].skew() if len(valid) > 0 else np.nan
     print(f"  - {col}: {len(valid)} valid | skew={skew:.2f} | {desc}")
+
+
+# skew refers to skewness, a statistical measure that tells you how a distribution is shaped.
+#
+# skew = 0 → perfectly symmetric distribution
+# skew > 0 → right-skewed (long tail on the right, many small values, few large ones)
+# skew < 0 → left-skewed (long tail on the left, many large values, few small ones)
 
 TARGET_COLUMN = "SiteEUI(kBtu/sf)"
 print(f"CHOSEN TARGET: {TARGET_COLUMN}")
@@ -129,9 +134,7 @@ missing_df = missing_df[missing_df["missing"] > 0].sort_values("missing", ascend
 
 print(missing_df.head(15))
 
-# =============================================================================
-# 8. VISUALIZATIONS
-# =============================================================================
+
 print("\n" + "=" * 60)
 print("GENERATING VISUALIZATIONS")
 print("=" * 60)
@@ -238,9 +241,7 @@ tracking = [
 for step, count in tracking:
     print(f"  {step}: {count} rows")
 
-# =============================================================================
-# 10. EXPORT CLEANED DATA
-# =============================================================================
+
 df_clean.to_csv(CLEAN_OUTPUT_PATH, index=False)
 print(f"\nCleaned data saved to: {CLEAN_OUTPUT_PATH}")
 building_consumption = df_clean

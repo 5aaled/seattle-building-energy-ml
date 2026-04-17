@@ -1,7 +1,3 @@
-"""
-Save the trained model with BentoML (Mission Part 2).
-Requires: data/prepared/X_prepared.csv, y.csv, preprocessor.joblib (from Step 3).
-"""
 
 import os
 import joblib
@@ -58,5 +54,4 @@ def main():
     print("Model saved successfully.")
 
 
-if __name__ == "__main__":
-    main()
+

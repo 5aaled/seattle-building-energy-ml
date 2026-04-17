@@ -1,8 +1,3 @@
-"""
-Step 2: Feature Engineering
-Seattle Building Energy Benchmarking - Non-Residential Buildings
-Creates new features from existing columns (no data leakage)
-"""
 
 import os
 import pandas as pd
@@ -15,9 +10,6 @@ OUTPUT_PATH = os.path.join(PROJECT_ROOT, "data", "enriched", "building_consumpti
 TARGET_COLUMN = "SiteEUI(kBtu/sf)"
 DATA_YEAR = 2016
 
-# =============================================================================
-# 1. LOAD CLEANED DATA
-# =============================================================================
 print("=" * 60)
 print("STEP 2: FEATURE ENGINEERING")
 print("=" * 60)
@@ -26,9 +18,6 @@ df = pd.read_csv(INPUT_PATH)
 print(f"Loaded {len(df)} rows from {INPUT_PATH}")
 print(f"Initial columns: {len(df.columns)}")
 
-# =============================================================================
-# 2. TEMPORALITY FEATURES
-# =============================================================================
 print("\n--- Temporality features ---")
 df["BuildingAge"] = DATA_YEAR - df["YearBuilt"]
 df["BuildingAgeSquared"] = df["BuildingAge"] ** 2
@@ -54,7 +43,7 @@ df["HasMultipleUses"] = df["ListOfAllPropertyUseTypes"].fillna("").str.contains(
 df["UseTypeCount"] = (df["ListOfAllPropertyUseTypes"].fillna("").str.count(",") + 1).clip(upper=5)
 df["LargestUseProportion"] = df["LargestPropertyUseTypeGFA"] / df["PropertyGFATotal"]
 df["LargestUseProportion"] = df["LargestUseProportion"].fillna(0).clip(upper=1)
-print(f"  + HasMultipleUses, UseTypeCount, LargestUseProportion")
+
 
 # 5. ENERGY SOURCE INDICATORS
 
@@ -74,7 +63,6 @@ rare_neighborhoods = neighborhood_counts[neighborhood_counts < 30].index
 df["NeighborhoodGrouped"] = df["Neighborhood"].replace(rare_neighborhoods, "Other")
 
 
-# 7. PRIMARY PROPERTY TYPE - COMPRESS HIGH CARDINALITY
 
 print("\n--- PrimaryPropertyType grouping ---")
 OFFICE_TYPES = ["Small- and Mid-Sized Office", "Large Office"]
@@ -103,12 +91,9 @@ def map_property_type(pt):
 df["PrimaryPropertyTypeGrouped"] = df["PrimaryPropertyType"].apply(map_property_type)
 
 
-# 8. ENERGY STAR FEATURE
 
 print("\n--- ENERGY STAR feature ---")
 df["HasENERGYSTARScore"] = df["ENERGYSTARScore"].notna().astype(int)
-print(f"  + HasENERGYSTARScore")
-
 
 # 9. SAVE ENRICHED DATASET
 
